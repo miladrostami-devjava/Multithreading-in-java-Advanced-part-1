@@ -1,0 +1,139 @@
+before method:
+
+public static void del_cal(int cal, String hr_C,String validFrom, String validTo,String trxname) {
+      CallableStatement stat = DB.prepareCall ( "{call hr_delete_occalendar_all_pr(?,?,?,?,?,?)}",trxname);
+
+		try {
+			stat.setString(1, "OC_Interval_Extented");
+			stat.setInt ( 2 ,cal  );
+			stat.setString ( 3 , "to_date('"+ validFrom.substring(0,10).replaceAll("\\s+","")+"','yyyy-mm-dd')");
+			stat.setString ( 4 , "to_date('"+ validTo.substring(0,10).replaceAll("\\s+","")+"','yyyy-mm-dd')" );
+			stat.setString ( 5 ,hr_C );
+			stat.setInt ( 6 , 5000);
+
+			stat.executeUpdate();
+
+        } catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			if ( stat != null )
+			{
+				try
+				{
+					stat.close ();
+				}
+				catch ( SQLException e )
+				{
+					e.printStackTrace ();
+				}
+			}
+		}
+	}
+
+	after method:
+
+	public static void del_cal(int cal, String hr_C, String validFrom, String validTo, String trxname) {
+        String procedureCall = "{call hr_delete_occalendar_all_pr(?,?,?,?,?,?)}";
+
+        try (CallableStatement stat = DB.prepareCall(procedureCall, trxname)) {
+
+            // Set static string
+            stat.setString(1, "OC_Interval_Extented");
+
+            // Set calendar ID
+            stat.setInt(2, cal);
+
+            // Convert validFrom and validTo to java.sql.Date
+            java.sql.Date fromDate = java.sql.Date.valueOf(validFrom.substring(0, 10).replaceAll("\\s+", ""));
+            java.sql.Date toDate = java.sql.Date.valueOf(validTo.substring(0, 10).replaceAll("\\s+", ""));
+
+            stat.setDate(3, fromDate);
+            stat.setDate(4, toDate);
+
+            // Set HR Code
+            stat.setString(5, hr_C);
+
+            // Set the static integer value
+            stat.setInt(6, 5000);
+
+            // Execute the procedure
+            stat.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+------------------------------------------------------------------------------------------------
+before:
+public static void del_groupcal(int cal,String group,String validFrom, String validTo,String trxname) {
+		 CallableStatement stat = DB.prepareCall ( "{call HR_GDelete_OCCalendar_All_pr(?,?,?,?,?,?)}",trxname);
+
+			try {
+				stat.setString(1, "OC_Interval_Extented");
+				stat.setInt ( 2 ,cal  );
+				stat.setString ( 3 , "to_date('"+ validFrom.substring(0,10).replaceAll("\\s+","")+"','yyyy-mm-dd')");
+				stat.setString ( 4 , "to_date('"+ validTo.substring(0,10).replaceAll("\\s+","")+"','yyyy-mm-dd')" );
+				stat.setString( 5 ,group );
+				stat.setInt ( 6 , 5000);
+
+				stat.executeUpdate();
+
+            } catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+
+				if ( stat != null )
+				{
+					try
+					{
+						stat.close ();
+					}
+					catch ( SQLException e )
+					{
+						e.printStackTrace ();
+					}
+				}
+			}
+	}
+
+
+after:
+
+
+public static void del_groupcal(int cal, String group, String validFrom, String validTo, String trxname) {
+    String procedureCall = "{call HR_GDelete_OCCalendar_All_pr(?,?,?,?,?,?)}";
+
+    try (CallableStatement stat = DB.prepareCall(procedureCall, trxname)) {
+
+        // Set static string
+        stat.setString(1, "OC_Interval_Extented");
+
+        // Set calendar ID
+        stat.setInt(2, cal);
+
+        // Convert validFrom and validTo to java.sql.Date
+        java.sql.Date fromDate = java.sql.Date.valueOf(validFrom.substring(0, 10).replaceAll("\\s+", ""));
+        java.sql.Date toDate = java.sql.Date.valueOf(validTo.substring(0, 10).replaceAll("\\s+", ""));
+
+        stat.setDate(3, fromDate);
+        stat.setDate(4, toDate);
+
+        // Set group name
+        stat.setString(5, group);
+
+        // Set the static integer value
+        stat.setInt(6, 5000);
+
+        // Execute the procedure
+        stat.executeUpdate();
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+
+
+------------------------------------------------------------------------------------------------
+

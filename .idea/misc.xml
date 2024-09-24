@@ -5,6 +5,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/multithreading-project-1/pom.xml" />
+        <option value="$PROJECT_DIR$/optimizingforlatency-multithreading-project/pom.xml" />
       </list>
     </option>
   </component>
