@@ -6,8 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="optimizing-for-throughput-project" />
+        <module name="criticalsections-in-multithreading" />
+        <module name="data-races-project" />
         <module name="optimizingforlatency-multithreading-project" />
+        <module name="MinMaxMetrics-project" />
+        <module name="application-metrics-in-multithreading" />
         <module name="multithreading-project-1" />
+        <module name="LockingStrategiesAndDeadlocks-project" />
+        <module name="CriticalSectionAndSynchronization" />
       </profile>
     </annotationProcessing>
   </component>

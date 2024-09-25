@@ -6,6 +6,13 @@
       <list>
         <option value="$PROJECT_DIR$/multithreading-project-1/pom.xml" />
         <option value="$PROJECT_DIR$/optimizingforlatency-multithreading-project/pom.xml" />
+        <option value="$PROJECT_DIR$/optimizing-for-throughput-project/pom.xml" />
+        <option value="$PROJECT_DIR$/criticalsections-in-multithreading/pom.xml" />
+        <option value="$PROJECT_DIR$/CriticalSectionAndSynchronization/pom.xml" />
+        <option value="$PROJECT_DIR$/application-metrics-in-multithreading/pom.xml" />
+        <option value="$PROJECT_DIR$/MinMaxMetrics-project/pom.xml" />
+        <option value="$PROJECT_DIR$/data-races-project/pom.xml" />
+        <option value="$PROJECT_DIR$/LockingStrategiesAndDeadlocks-project/pom.xml" />
       </list>
     </option>
   </component>
